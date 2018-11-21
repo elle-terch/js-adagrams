@@ -105,34 +105,31 @@ const Adagrams = {
 
 
 
+    
+    highestScoreFrom(words) {
+      // This operates on "scored words" which are { word, score } objects
+      const comparer = (left, right) => {
+        // Select the word with best score
+        if(left.score > right.score) return left;
+        if(left.score < right.score) return right;
 
+        // Return left if they have the same length
+        if(left.word.length === right.word.length) return left;
 
+        // Return either if they have 10 letters
+        if(left.word.length === 10) return left;
+        if(right.word.length === 10) return right;
 
+        // Return the word with the fewest letters
+        if(left.word.length < right.word.length) return left;
+        return right;
+      };
 
-  // highestScoreFrom(words) {
-  //   // This operates on "scored words" which are { word, score } objects
-  //   const comparer = (left, right) => {
-  //     // Select the word with best score
-  //     if(left.score > right.score) return left;
-  //     if(left.score < right.score) return right;
-  //
-  //     // Return left if they have the same length
-  //     if(left.word.length === right.word.length) return left;
-  //
-  //     // Return either if they have 10 letters
-  //     if(left.word.length === 10) return left;
-  //     if(right.word.length === 10) return right;
-  //
-  //     // Return the word with the fewest letters
-  //     if(left.word.length < right.word.length) return left;
-  //     return right;
-  //   };
-  //
-  //   return words.map((word) => ({
-  //     word,
-  //     score: Adagrams.scoreWord(word),
-  //   })).reduce(comparer);
-  // },
+      return words.map((word) => ({
+        word,
+        score: Adagrams.scoreWord(word),
+      })).reduce(comparer);
+    },
 
 
 
