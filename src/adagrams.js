@@ -66,56 +66,28 @@ const Adagrams = {
     },
 
 
-    // Object.entries(object2).forEach(([key, value]) => console.log(`${key}: ${value}`))
+    usesAvailableLetters(word, drawnLetters) {
+      const letters = word.split('');
+      const drawnLettersCopy = drawnLetters.slice(0);
 
-//     var fruits = ["Banana", "Orange", "Apple", "Mango"];
-// fruits.push("Kiwi");
+      letters.forEach((letter) => {
 
-    // [1,2,3].forEach(function(i) {
-    //   something();
-    // });
+        if (drawnLettersCopy.includes(letter)) {
+          let index = drawnLettersCopy.indexOf(letter);
 
+          drawnLettersCopy.splice(index, 1)[0];
 
-//     var foo = [];
-//
-// for (var i = 1; i <= N; i++) {
-//    foo.push(i);
-// }
+        } else {
 
-//
-//     const letters = this.allLetters.forEach(function(letter, count) {
-//       let i = 0;
-//       while (i < count) {
-//
-//       }
-//
-//
-//
-//       let i = 0;
-// while (i < 10) {
-//     console.log(`Iteration ${i}`);
-//     i++;
-// }
-//
-//     });
-//
-//     const letterPool = Object.entries(Adagrams.LETTER_COUNTS).reduce((letters, [count, letterSet]) => {
-//       return letters + letterSet.repeat(count);
-//     }, '').split('');
-//     let letters = [];
-//     for(let i = 0; i < 10; i++) {
-//       const index = Math.floor(Math.random() * this.allLetters.length);
-//       letters.push(this.allLetters.splice(index, 1)[0]); // Remove entry from letter_pool at index, add to letters array
-//     }
-//
-//     return letters;
-//   },
+          return false;
+        }
+        return true;
+      });
+      
+    },
 
 
-  // usesAvailableLetters(word, drawnLetters) {
-  //   const letters = word.split('');
-  //   const drawnCopy = drawnLetters.slice(0); // Create a copy of the drawn letters which we can modify
-  //
+
   //   return letters.every((letter) => {
   //     const index = drawnCopy.indexOf(letter);
   //     if(index === -1) return false;
