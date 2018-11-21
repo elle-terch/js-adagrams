@@ -29,7 +29,7 @@ const Adagrams = {
       "Z": 1,
     },
 
-    SCORE_CHART: {
+    letterScores: {
       'A': 1, 'E': 1, 'I': 1, 'O': 1, 'U': 1, 'L': 1, 'N': 1, 'R': 1, 'S': 1, 'T': 1,
       'D': 2, 'G': 2,
       'B': 3, 'C': 3, 'M': 3, 'P': 3,
@@ -38,8 +38,6 @@ const Adagrams = {
       'J': 8, 'X': 8,
       'Q': 10, 'Z': 10,
     },
-
-    LENGTH_BONUS: 8,
 
 
     drawLetters() {
@@ -83,30 +81,33 @@ const Adagrams = {
         }
         return true;
       });
-      
+    },
+
+
+    scoreWord(word) {
+
+      let score = 0;
+
+      const wordLetters = word.toUpperCase().split('');
+
+      wordLetters.forEach((letter) => {
+
+        score += Adagrams.letterScores[letter];
+
+      });
+
+      if (word.length >= 7) {
+        score += 8;
+      }
+
+      return score;
     },
 
 
 
-  //   return letters.every((letter) => {
-  //     const index = drawnCopy.indexOf(letter);
-  //     if(index === -1) return false;
-  //
-  //     delete drawnCopy[index];
-  //     return true;
-  //   });
-  // },
 
-  // scoreWord(word) {
-  //   return word.toUpperCase().split('').reduce((wordScore, letter) => {
-  //     const letterScore = Adagrams.SCORE_CHART[letter];
-  //     if(letterScore === undefined) {
-  //       throw `${letter} is not in the English alphabet!`;
-  //     }
-  //
-  //     return wordScore + letterScore;
-  //   }, word.length < 7 ? 0 : Adagrams.LENGTH_BONUS);
-  // },
+
+
 
   // highestScoreFrom(words) {
   //   // This operates on "scored words" which are { word, score } objects
